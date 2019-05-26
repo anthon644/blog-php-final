@@ -1,48 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!-- recupération du header (barre de navigation etc..) -->
 
-<head>
-
-	<title>phpblog</title>
-
-	<meta charset="utf-8">
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-</head>
-
-<body>
-
-	<?php 
-
-	$pdo = new PDO("mysql:host=localhost;dbname=phpblog;charset=utf8;port=3306", "root", "root");
-
-	$req = $pdo->query("SELECT * FROM article");
-
-	$articles = $req->fetchAll(PDO::FETCH_OBJ);
-
-	var_dump($articles);
-
-
-
-	?>
-
-	<nav>
-		
-		<ul>
-			
-			<li><a href="#" class="logo">PHP BLOG</a></li>
-			<li><a href="#">Accueil</a></li>
-			<li><a href="list.php">Catégorie</a></li>
-			<li><a href="#">Contact</a></li>
-			<li><img src="img/search.png"></li>
-
-		</ul>
-
-	</nav>
-
+<?php include 'header.php'; ?>
+	
 
 	<header>
 		
@@ -51,63 +10,40 @@
 	</header>
 
 
-	<div class="featured">
+	<div class="featured" id="article">
 		
-		<h1>Featured Articles</h1>
+		<h1>Articles à la une</h1>
 
 	</div>
 
 
-	<section>
+	<section id="section">
 
-	<?php
+		<!-- ICI la loop qui récupéres tout les articles -->
 
-        foreach ($articles as $article) : 
-    ?>
+	<?php foreach ($articles as $article) : ?>
 		
 		<article>
 
 			<figure>
 			
-				<img src="https://place-hold.it/500x300">
+					<img src=<?= $article->urlImgArticle ?>>
 
-				<h2><?= $article->titre ?></h2>
+					<h2><?= $article->titre ?></h2>
 
-				<figcaption><?=substr($article->contenu,0,200)?></figcaption>
+					<figcaption><?=substr($article->contenu,0,200)?>...</figcaption>
 
-				<a href="single.php">lire</a>
+
+					<a href="single.php?id=<?= $article->code_article?>">lire</a>
 
 			</figure>
 
 		</article>
 
-	<?php
-        
-        endforeach;
-    ?>
+	<?php endforeach; ?>
 
 	</section>
 
-		<div class="featured">
-		
-		<h1>Catégories</h1>
+	<!-- ICI on récupére le footer -->
 
-		</div>
-
-	<footer>
-		
-		<div class="categorie">
-			
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-
-		</div>
-
-	</footer>
-
-</body>
-
-</html>
+	<?php include 'footer.php'; ?>

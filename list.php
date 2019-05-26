@@ -1,111 +1,45 @@
-<!DOCTYPE html>
-<html>
+<!-- ICI on récupére le header -->
 
-<head>
+<?php include 'header.php'; ?>
 
-	<title>phpblog</title>
-
-	<meta charset="utf-8">
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-</head>
-
-<body>
-
-	<nav>
+<div class="featured">
 		
-		<ul>
-			
-			<li><a href="index.php" class="logo">PHP BLOG</a></li>
-			<li><a href="index.php">Accueil</a></li>
-			<li><a href="#">Catégorie</a></li>
-			<li><a href="#">Contact</a></li>
-			<li><img src="img/search.png"></li>
+	<h1>Article Classés par date</h1>
 
-		</ul>
+</div>
 
-	</nav>
-
-
-	<div class="featured">
-		
-		<h1>Categories</h1>
-
-	</div>
-
+	<!-- ICI la loop qui récupéres toute les article (ceux ci sont trier par dates) -->
 
 	<section class="list">
 		
-		<article>
+	
+		<?php foreach ($articles as $article) :?>
 
-			<figure class="listcat">
+    		<h2><?= $article->date ?></h2>
+		
+		<article class="liste">
+
+			<figure>
 			
-				<img src="https://place-hold.it/500x300">
+				<img src=<?= $article->urlImgArticle ?>>
 
-				<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.
-				</figcaption>
+				<h2><?= $article->titre ?></h2>
 
-				<a href="single.php">lire</a>
+				<figcaption><?=substr($article->contenu,0,200)?>...</figcaption>
+
+
+
+				<a href="single.php?id=<?= $article->code_article?>">lire</a>
 
 			</figure>
 
 		</article>
 
-		<article>
-			
-			<figure class="listcat">
-			
-				<img src="https://place-hold.it/500x300">
-
-				<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.
-				</figcaption>
-
-				<a href="single.php">lire</a>
-
-			</figure>
-
-		</article>
-
-		<article>
-			
-			<figure class="listcat">
-			
-				<img src="https://place-hold.it/500x300">
-
-				<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nulla luctus tortor vel purus pulvinar maximus.
-				</figcaption>
-
-				<a href="single.php">lire</a>
-
-			</figure>
-
-		</article>
+	<?php endforeach; ?>
+		
 
 	</section>
 
-		<div class="featured">
-		
-		<h1>Catégories</h1>
+	<!-- ICI on récupére le footer -->
 
-		</div>
-
-	<footer>
-		
-		<div class="categorie">
-			
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-			<img src="https://place-hold.it/256x256">
-
-		</div>
-
-	</footer>
-
-</body>
-
-</html>
+<?php include 'footer.php'; ?>
